@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Do You Love Me?</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffe6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+}
+
+p {
+  margin-top: -10px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.buttons button:hover {
+  background-color: #ffd6d6;
+}.container {
+  text-align: center;
+  position: relative;
+}
+</style>
+<body>
+  <div class="container">
+    <h1 id="question">Do you love Vithean! 🤗</h1>
+    <p id="subtext"></p>
+    
+    <img
+      src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmc5Y2xla3lrbmhzZ205ZjgxMzh1MXVjMmc0NXF1bjBzNTMwbmgybCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KztT2c4u8mYYUiMKdJ/200.webp"
+      class="image"
+      alt="response gif"
+    />
+
+    <div class="buttons">
+      <button onclick="handleYes()">Yes</button>
+      <button onclick="handleNo()">No</button>
+    </div>
+  </div>
+
+  <script>
+    let noClickCount = 0;
+    const noBtn = document.querySelectorAll("button")[1];
+    const yesBtn = document.querySelectorAll("button")[0];
+    const image = document.querySelector(".image");
+
+    function handleYes() {
+        document.getElementById("question").innerText = "Hehe i know it! 😘";
+        document.getElementById("subtext").innerText = "";
+
+        // Set happy/cute love GIF
+        image.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmc5Y2xla3lrbmhzZ205ZjgxMzh1MXVjMmc0NXF1bjBzNTMwbmgybCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/j5O4lz9WEtfvG/200.webp"; // Love GIF
+
+        // Hide buttons
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+
+        noClickCount = 0;
+    }
+
+    function handleNo() {
+    noClickCount++;
+    const question = document.getElementById("question");
+    const subtext = document.getElementById("subtext");
+        if (noClickCount === 1) {
+            question.innerText = "Think it through properly!🙄";
+            subtext.innerText = "Don't talk so quickly! 😏";
+            image.src = "https://media0.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dWF4MGt2eGpiaXMxejlybnhtN2lkejh1dng4NnNjc3cxdXljYTJqciZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/DwhirYqZhaPSNdmCYL/giphy.webp"; // Thinking/side-eye
+        } else if (noClickCount === 2) {
+            question.innerText = "Think once more!😣";
+            subtext.innerText = "";
+            image.src = "https://media1.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3c3hzeHBnYnVveGZuODFuYzhrdTZpOWwzMnQzOW5tZTl0OXZjMWluZSZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/h4ZWWyJwTzp1yUHW3q/giphy.webp"; // Worried face
+        } else {
+            question.innerText = "Give in now! How much more will you act pricey😭";
+            subtext.innerText = "That's very wrong😭";
+            image.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzMzMGo2enE2Z2J2Ym4zOXpnZDBmY21iamVkY3VsZGkwd25pajhjeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ghXitlPhJSsMzpAQvD/giphy.webp"; // Crying face
+            activateNoDodge();
+        }
+    }
+    function activateNoDodge() {
+        noBtn.style.position = "absolute";
+        document.querySelector(".container").addEventListener("mousemove", (e) => {
+            const rect = noBtn.getBoundingClientRect();
+            const distX = Math.abs(e.clientX - rect.left);
+            const distY = Math.abs(e.clientY - rect.top);
+
+            if (distX < 100 && distY < 60) {
+            const offsetX = Math.floor(Math.random() * 300) - 150;
+            const offsetY = Math.floor(Math.random() * 200) - 100;
+
+            noBtn.style.left = `${Math.max(0, Math.min(window.innerWidth - 100, e.clientX + offsetX))}px`;
+            noBtn.style.top = `${Math.max(0, Math.min(window.innerHeight - 50, e.clientY + offsetY))}px`;
+            }
+        });
+    }
+  </script>
+</body>
+</html>
