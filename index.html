@@ -130,7 +130,7 @@ p {
 
         // Set happy/cute love GIF
         image.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmc5Y2xla3lrbmhzZ205ZjgxMzh1MXVjMmc0NXF1bjBzNTMwbmgybCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/j5O4lz9WEtfvG/200.webp"; // Love GIF
-
+         noBtn.style.display = "none";
         // Hide buttons
         const interval = setInterval(() => {
         const heart = document.createElement("div");
@@ -142,10 +142,10 @@ p {
 
         document.body.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 3000);
+        setTimeout(() => heart.remove(), 10000);
       }, 100);
 
-      setTimeout(() => clearInterval(interval), 5000);
+      setTimeout(() => clearInterval(interval), 50000);
             
 
             noClickCount = 0;
@@ -168,6 +168,9 @@ p {
             subtext.innerText = "That's very wrong😭";
             image.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzMzMGo2enE2Z2J2Ym4zOXpnZDBmY21iamVkY3VsZGkwd25pajhjeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ghXitlPhJSsMzpAQvD/giphy.webp"; // Crying face
             activateNoDodge();
+            noBtn.style.position = "fixed";
+            noBtn.style.left = "50%";
+            noBtn.style.top = "50%";
             
         }
     }
