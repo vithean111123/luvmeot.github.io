@@ -55,6 +55,50 @@ p {
   text-align: center;
   position: relative;
 }
+.heart {
+      position: fixed;
+      top: -2em;
+      color: #ff3366;
+      animation: fall 3s linear forwards;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    .btn-buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+
+    button {
+      padding: 16px 32px;
+      font-size: 18px;
+      background-color: #ff3366;
+      border: none;
+      border-radius: 30px;
+      color: rgb(236, 141, 141);
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 51, 102, 0.5);
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #e02d5f;
+    }
 </style>
 <body>
   <div class="container">
@@ -81,17 +125,31 @@ p {
 
     function handleYes() {
         document.getElementById("question").innerText = "Hehe i know it! 😘";
+        document.getElementById("question").style.color = "#ff4d4d"; 
         document.getElementById("subtext").innerText = "";
 
         // Set happy/cute love GIF
         image.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmc5Y2xla3lrbmhzZ205ZjgxMzh1MXVjMmc0NXF1bjBzNTMwbmgybCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/j5O4lz9WEtfvG/200.webp"; // Love GIF
 
         // Hide buttons
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
+        const interval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "❤️";
 
-        noClickCount = 0;
-    }
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = 16 + Math.random() * 20 + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 3000);
+      }, 100);
+
+      setTimeout(() => clearInterval(interval), 5000);
+            
+
+            noClickCount = 0;
+      }
 
     function handleNo() {
     noClickCount++;
@@ -110,6 +168,7 @@ p {
             subtext.innerText = "That's very wrong😭";
             image.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzMzMGo2enE2Z2J2Ym4zOXpnZDBmY21iamVkY3VsZGkwd25pajhjeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ghXitlPhJSsMzpAQvD/giphy.webp"; // Crying face
             activateNoDodge();
+            
         }
     }
     function activateNoDodge() {
